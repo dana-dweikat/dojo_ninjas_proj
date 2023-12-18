@@ -1,0 +1,31 @@
+For Import Models :
+from dojo_ninjas_app.models import Dojos , Ninjas
+Query : 
+Dojos.objects.create(name= " dana", city = "jenin",state="1")
+Dojos.objects.create(name= " ahmed", city = "nablus",state="2")
+Dojos.objects.create(name= " rana", city = "ramallah",state="1")
+Query :
+Dojos.objects.get(id=1).delete()
+Dojos.objects.get(id=2).delete()
+Dojos.objects.get(id=3).delete()
+Query:
+Dojos.objects.create(name= " dodo", city = "jenin",state="1")
+Dojos.objects.create(name= "soso", city = "nablus",state="2")
+Dojos.objects.create(name= " momo", city = "ramallah",state="1")
+Query:
+dojo_1 = Dojos.objects.first()    
+Ninjas.objects.create(dojo_id=dojo_1,first_name="dana",last_name="dewikat")
+Query:
+dojo_2 = Dojos.objects.all()[1]
+Ninjas.objects.create(dojo_id=dojo_2,first_name="soso",last_name="htt")
+Query:
+dojo_3 = Dojos.objects.all()[2]
+Ninjas.objects.create(dojo_id=dojo_3,first_name="fdsa",last_name="ds")
+Query:
+Dojos.objects.first().ninjas.all()
+Query:
+Dojos.objects.last().ninjas.all()
+Query:
+Dojos.objects.last()
+Query:
+Dojos.objects.create(name= " momo", city = "ramallah",state="1",desc="Long Descodfsd")
