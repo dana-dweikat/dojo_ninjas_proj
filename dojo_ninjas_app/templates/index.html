@@ -4,18 +4,107 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>dojo_ninjas_proj</title>
     <link rel="stylesheet" href="{% static 'bootstrap.min.css' %}" />
 
 </head>
 <body>
-
+  <div class="container text-center mt-5">
+    <section class="row">
+      <div class="col-md-6">
+        <div class="card shadow">
+          <h3 class="card-title text-center mt-3">Add a Dojo:</h3>
+            <form action="{% url 'add_dojo' %}" class="card-body" method="POST">
+              {% csrf_token %}
+              <div class="row mb-3">
+                <label for="name" class="col-sm-2 col-form-label">Name:</label>
+                <div class="col-sm-4">
+                  <input required type="text" name="name"   class="form-control" id="name">
+                </div>
+              </div>
+              <div class="row mb-3">
+                <label for="city" class="col-sm-2 col-form-label">City:</label>
+                <div class="col-sm-4">
+                  <input required type="text" name="city"   class="form-control" id="city">
+                </div>
+              </div>
+              <div class="row mb-3">
+                <label for="desc" class="col-sm-2 col-form-label">Describtion:</label>
+                <div class="col-sm-4">
+                  <input required type="text" name="desc"   class="form-control" id="desc">
+                </div>
+              </div>
+            <div class="row mb-3">
+                <label for="state" class="col-sm-2 col-form-label">State:</label>
+                <div class="col-sm-4">
+                  <input required type="text" name="state"   class="form-control" id="state">
+                </div>
+              </div>
+              <button type="submit" class="btn btn-success m-5">Add </button>
+          </form>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="card shadow">
+          <h3 class="card-title text-center mt-3">Add a Ninja:</h3>
+          <form action="{% url 'add_ninja' %}" class="card-body" method="POST">
+            {% csrf_token %}
+            <div class="row mb-3">
+              <label for="first_name" class=" col-form-label">first_name:</label>
+              <div class="col-sm-4">
+                <input required type="text" name="first_name" class="form-control" id="first_name">
+              </div>
+            </div>
+            <div class="row mb-3">
+              <label for="last_name" class="col-form-label">last_name:</label>
+              <div class="col-sm-4">
+                <input required type="text" name="last_name"   class="form-control" id="last_name">
+              </div>
+            </div>
+            <div class="row">
+              <p>Dojo</p>
+              <label class="visually-hidden" for="autoSizingSelect">yddy6</label>
+              <select name="dojo_selected" class="form-select" placeholder="_select a dojo_">
+                {% for dojo in all_dojo %}
+                <option value="{{dojo.id}}">{{dojo.name}}</option>
+                {% endfor %}
+              </select>
+            </div>
+            <button type="submit" class="btn btn-success m-5">Add </button>
+          </form>
+        </div>
+      </div>
+    </section>
+    <section class="row">
+      <div class="col-10">
+        <div class="card">
+          <div class="card-header">
+            <h3 class="card-title text-center">All the Dojos:</h3>
+          </div>
+          <div class="card-body">
+            <ul>
+              {% for dd in all_dojo %}
+                <li>
+                  <h3>{{dd.id}}  -  {{dd.name}}</h3>
+                  {% for ninja in dd.ninjas.all %}
+                    <span>{{ninja}}</span>
+                  {% endfor %}
+                </li>
+              {% endfor %}
+            </ul>
+            <!-- <h5>Ninjas at the painting Dojo </h5>
+              <li>leonardo da vinci</li>
+              <li>raffaello sanzio do urbino</li>
+            <h5>Ninjas at the Architecture Dojo </h5>
+            <h5>Ninjas at the sculpting Dojo </h5>
+              <li>michelangelo di lodovico</li>
+              <li>donato di niccolo betto </li>
+             -->
+          </div>
+        </div>
+      </div>
+    </section>
     
-
-
-
-
-
 
     <script src="{% static 'bootstrap.bundle.min.js' %}"></script>
   </body>
